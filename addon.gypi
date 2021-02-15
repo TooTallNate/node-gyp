@@ -169,6 +169,14 @@
           # clients of class 'node::ObjectWrap'
           4251
         ],
+        'configurations': {
+          'Debug_x64': {
+            'inherit_from': ['Debug'],
+          },
+          'Release_x64': {
+            'inherit_from': ['Release'],
+          }
+        }
       }, {
         # OS!="win"
         'defines': [
