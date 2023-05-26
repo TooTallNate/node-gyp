@@ -432,3 +432,32 @@ test('test process release - NODEJS_ORG_MIRROR', function (t) {
 
   delete process.env.NODEJS_ORG_MIRROR
 })
+
+test('test process release - npm_config_nodejs_org_mirror', function (t) {
+  t.plan(2)
+
+  // is equivalent to setting nodejs_org_mirror=http://foo.bar in the .npmrc file
+  process.env.npm_config_nodejs_org_mirror = 'http://foo.bar'
+
+  var release = processRelease([], { opts: {} }, 'v4.1.23', {
+    name: 'node',
+    headersUrl: 'https://nodejs.org/dist/v4.1.23/node-v4.1.23-headers.tar.gz'
+  })
+
+  t.equal(release.semver.version, '4.1.23')
+  delete release.semver
+
+  t.deepEqual(release, {
+    version: '4.1.23',
+    name: 'node',
+    baseUrl: 'http://foo.bar/v4.1.23/',
+    tarballUrl: 'http://foo.bar/v4.1.23/node-v4.1.23-headers.tar.gz',
+    shasumsUrl: 'http://foo.bar/v4.1.23/SHASUMS256.txt',
+    versionDir: '4.1.23',
+    ia32: { libUrl: 'http://foo.bar/v4.1.23/win-x86/node.lib', libPath: 'win-x86/node.lib' },
+    x64: { libUrl: 'http://foo.bar/v4.1.23/win-x64/node.lib', libPath: 'win-x64/node.lib' },
+    arm64: { libUrl: 'http://foo.bar/v4.1.23/win-arm64/node.lib', libPath: 'win-arm64/node.lib' }
+  })
+
+  delete process.env.npm_config_nodejs_org_mirror
+})
