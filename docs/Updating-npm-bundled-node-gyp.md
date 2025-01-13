@@ -41,6 +41,13 @@ $ npm explore npm/node_modules/npm-lifecycle -g -- npm install node-gyp@latest
 
 If the command fails with a permissions error, please try `sudo` and then the command.
 
+If you are using `nvm` and the logs indicate no change of the `node-gyp` version, you might need to specify the `node` version, for example do:
+```bash
+$ cd /home/user/.nvm/versions/node/v18.13.0/node_modules/npm/node_modules/@npmcli/run-script
+$ npm install node-gyp@latest
+```
+
+
 ## Windows
 
 Windows is a bit trickier, since `npm` might be installed in the "Program Files" directory, which needs admin privileges to modify current Windows. Therefore, run the following commands __inside a `cmd.exe` started with "Run as Administrator"__:
