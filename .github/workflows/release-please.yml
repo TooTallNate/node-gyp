@@ -9,13 +9,12 @@ jobs:
   release-please:
     outputs:
       release_created:  ${{ steps.release.outputs.release_created }}
-    permissions:
-      contents: write # to create release commit (googleapis/release-please-action)
-      pull-requests: write # to create release PR (googleapis/release-please-action)
     runs-on: ubuntu-latest
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
+        with:
+          token: ${{ secrets.GH_USER_TOKEN }}
           # Standard Conventional Commits: `feat` and `fix`
           # node-gyp subdirectories: `bin`, `gyp`, `lib`, `src`, `test`
           # node-gyp subcommands: `build`, `clean`, `configure`, `install`, `list`, `rebuild`, `remove`

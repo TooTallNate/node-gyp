@@ -13,6 +13,10 @@ CHECKOUT_PATH = os.path.dirname(os.path.realpath(__file__))
 CHECKOUT_GYP_PATH = os.path.join(CHECKOUT_PATH, "gyp")
 
 parser = argparse.ArgumentParser()
+parser.add_argument("--no-commit",
+    action="store_true",
+    dest="no_commit",
+    help="do not run git-commit")
 parser.add_argument("tag", help="gyp tag to update to")
 args = parser.parse_args()
 
@@ -60,5 +64,6 @@ with tempfile.TemporaryDirectory() as tmp_dir:
             os.path.join(unzip_target, os.listdir(unzip_target)[0]), CHECKOUT_GYP_PATH
         )
 
-subprocess.check_output(["git", "add", "gyp"], cwd=CHECKOUT_PATH)
-subprocess.check_output(["git", "commit", "-m", "feat(gyp): update gyp to " + args.tag])
+if not args.no_commit:
+  subprocess.check_output(["git", "add", "gyp"], cwd=CHECKOUT_PATH)
+  subprocess.check_output(["git", "commit", "-m", "feat(gyp): update gyp to " + args.tag])

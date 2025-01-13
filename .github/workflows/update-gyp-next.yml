@@ -1,0 +1,52 @@
+name: Update gyp-next
+
+on:
+  schedule:
+    # Run once a week at 12:00 AM UTC on Sunday.
+    - cron: 0 0 * * *
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: lts/*
+
+jobs:
+  update-gyp-next:
+    # if: github.repository == 'nodejs/node' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/github-script@v7
+        id: get-gyp-next-version
+        with:
+          script: |
+            const result = await github.rest.repos.getLatestRelease({
+              owner: 'nodejs',
+              repo: 'gyp-next',
+            });
+            return result.data.tag_name
+          result-encoding: string
+
+      - name: Update gyp-next
+        run: |
+          python update-gyp.py --no-commit ${{ steps.get-gyp-next-version.outputs.result }}
+
+      - name: Open or update PR for the gyp-next update
+        uses: gr2m/create-or-update-pull-request-action@v1
+        with:
+          branch: actions/update-gyp-next
+          author: Node.js GitHub Bot <github-bot@iojs.org>
+          title: 'feat: update gyp-next to ${{ steps.get-gyp-next-version.outputs.result }}'
+          commit-message: 'feat: update gyp-next to ${{ steps.get-gyp-next-version.outputs.result }}'
+          update-pull-request-title-and-body: true
+          body: >
+            This is an automated update of the gyp-next to
+            https://github.com/nodejs/gyp-next/releases/tag/${{ steps.get-gyp-next-version.outputs.result }}.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_USER_TOKEN }}
