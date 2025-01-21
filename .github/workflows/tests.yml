@@ -96,14 +96,17 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
         python: ["3.9", "3.11", "3.13"]
-        node: [18.x, 20.x, 22.x]
+        node: [18.x, 20.x, 22.x, 23.x]
         include:
           - os: macos-13
             python: "3.13"
-            node: 22.x
+            node: 23.x
+          - os: ubuntu-24.04-arm
+            python: "3.13"
+            node: 23.x
           - os: windows-2025
             python: "3.13"
-            node: 22.x
+            node: 23.x
     name: ${{ matrix.os }} - ${{ matrix.python }} - ${{ matrix.node }}
     runs-on: ${{ matrix.os }}
     steps:
