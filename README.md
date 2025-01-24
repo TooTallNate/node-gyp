@@ -109,13 +109,13 @@ different build configurations from the official Node.js distribution, you
 should use `--dist-url` or `--nodedir` flags to specify the headers of the
 runtime to build for.
 
-Also when `--dist-url` or `--nodedir` flags are passed, node-gyp will use the
+Also when `--dist-url` or `--nodedir` flags are passed, `node-gyp` will use the
 `config.gypi` shipped in the headers distribution to generate build
 configurations, which is different from the default mode that would use the
 `process.config` object of the running Node.js instance.
 
 Some old versions of Electron shipped malformed `config.gypi` in their headers
-distributions, and you might need to pass `--force-process-config` to node-gyp
+distributions, and you might need to pass `--force-process-config` to `node-gyp`
 to work around configuration errors.
 
 ## How to Use
@@ -177,7 +177,7 @@ A barebones `gyp` file appropriate for building a Node.js addon could look like:
 
 ## Further reading
 
-The **[docs](./docs/)** directory contains additional documentation on specific node-gyp topics that may be useful if you are experiencing problems installing or building addons using node-gyp.
+The **[docs](./docs/)** directory contains additional documentation on specific `node-gyp` topics that may be useful if you are experiencing problems installing or building addons using `node-gyp`.
 
 Some additional resources for Node.js native addons and writing `gyp` configuration files:
 
