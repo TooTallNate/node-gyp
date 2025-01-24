@@ -48,3 +48,4 @@ To add to this page, just add the link to the project's `binding.gyp` file below
  * [sharp](https://github.com/lovell/sharp/blob/master/binding.gyp)
  * [krb5](https://github.com/adaltas/node-krb5/blob/master/binding.gyp)
  * [node-heapdump](https://github.com/bnoordhuis/node-heapdump/blob/master/binding.gyp)
+ * [node-lame](https://github.com/TooTallNate/node-lame/blob/master/binding.gyp)
