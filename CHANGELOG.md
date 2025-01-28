@@ -1,5 +1,19 @@
 # Changelog
 
+## [11.0.1](https://github.com/nodejs/node-gyp/compare/v11.0.0...v11.0.1) (2025-01-28)
+
+
+### Bug Fixes
+
+* Find VC.Tools.ARM64 on arm64 machine ([#3075](https://github.com/nodejs/node-gyp/issues/3075)) ([b899fae](https://github.com/nodejs/node-gyp/commit/b899faed56270d3d8496da7576b5750b264c2c21))
+* try libnode.dll first in load_exe_hook ([#2834](https://github.com/nodejs/node-gyp/issues/2834)) ([b9d10a5](https://github.com/nodejs/node-gyp/commit/b9d10a5a37081e2a731937e43eca52c83609e7f5))
+
+
+### Miscellaneous
+
+* add gyp-next updater ([#3105](https://github.com/nodejs/node-gyp/issues/3105)) ([e3f9a77](https://github.com/nodejs/node-gyp/commit/e3f9a7756f65a7f4e50799017b3dc51d5bc195b2))
+* Use astral-sh/ruff-action@v3 to run the Python linter ([#3114](https://github.com/nodejs/node-gyp/issues/3114)) ([94448fc](https://github.com/nodejs/node-gyp/commit/94448fcd9f090814bce1c4361471dae199dc2e82))
+
 ## [11.0.0](https://github.com/nodejs/node-gyp/compare/v10.3.1...v11.0.0) (2024-12-03)
 
 
