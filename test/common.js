@@ -1,7 +1,9 @@
-const envPaths = require('env-paths')
 const semver = require('semver')
 
-module.exports.devDir = envPaths('node-gyp', { suffix: '' }).cache
+module.exports.devDir = async () => {
+  const { default: envPaths } = await import('env-paths')
+  return envPaths('node-gyp', { suffix: '' }).cache
+}
 
 module.exports.poison = (object, property) => {
   function fail () {

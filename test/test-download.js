@@ -162,12 +162,12 @@ describe('download', function () {
 
     this.timeout(platformTimeout(1, { win32: 5 }))
 
-    const expectedDir = path.join(devDir, process.version.replace(/^v/, ''))
+    const expectedDir = path.join(await devDir(), process.version.replace(/^v/, ''))
     await fs.rm(expectedDir, { recursive: true, force: true })
 
     const prog = gyp()
     prog.parseArgv([])
-    prog.devDir = devDir
+    prog.devDir = await devDir()
     await install(prog, [])
 
     const data = await fs.readFile(path.join(expectedDir, 'installVersion'), 'utf8')
