@@ -101,7 +101,7 @@ jobs:
           - os: macos-13
             python: "3.13"
             node: 23.x
-          - os: ubuntu-24.04-arm
+          - os: ubuntu-24.04-arm 
             python: "3.13"
             node: 23.x
           - os: windows-2025
